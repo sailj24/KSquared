@@ -50,7 +50,7 @@ System.out.println("** Reading Book File: " + filename);
     			// post-process the sorted list to build a new list of unique words
     		    PrintWriter out1;
     	        try {
-    	            out1 = new PrintWriter("FrenchWordList.txt");  // DEBUG is the name of the file. 
+    	            out1 = new PrintWriter("src/texts/FrenchWordList.txt");  // DEBUG is the name of the file. 
     	            // You would do something like PrintWriter("FrenchWordList.txt");
         			String lastWord = ""; // Hold the previous word in the list
         			for(String s : frenchWordList){

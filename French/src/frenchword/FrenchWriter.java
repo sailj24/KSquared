@@ -12,7 +12,7 @@ import java.util.Collections;
 public class FrenchWriter {
     ArrayList<FrenchWord> WordList;
     
-    public static void main(String[] args) {
+    public static void main(String[] args) { 
         makeWordFileFromBook("src/texts/proust.txt");
         //makePhonemeFileFromWordList("FrenchWordList.txt");
         //readSampleSentences();

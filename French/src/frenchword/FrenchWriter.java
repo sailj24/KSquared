@@ -13,7 +13,12 @@ public class FrenchWriter {
     ArrayList<FrenchWord> WordList;
     
     public static void main(String[] args) { 
-        makeWordFileFromBook("src/texts/proust.txt");
+       // makeWordFileFromBook("src/texts/proust.txt");
+    	FrenchWord myWord = new FrenchWord("font");
+    	System.out.println(myWord);
+    	FrenchWord myWord2 = new FrenchWord("psychologie");
+    	System.out.println(myWord2);
+    
         //makePhonemeFileFromWordList("FrenchWordList.txt");
         //readSampleSentences();
     }
@@ -37,8 +42,10 @@ System.out.println("** Reading Book File: " + filename);
     				String[] lineWords = line.split(" ");
 
     				for(String  word : lineWords){
-    					String candidate = word.toLowerCase().replaceAll("[)(\\[\\]!,.?{} :; \"\\']", "");
+    					String candidate = word.toLowerCase().replaceAll("[)[0-9](\\[\\]!,.?{} :; \\- \"\\']", "");
+    					if (candidate != null) {
     					frenchWordList.add(candidate);  // Add the word object
+    					}
     				}
     				line = reader.readLine();
     			}

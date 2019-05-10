@@ -385,11 +385,17 @@ public class FrenchWord {
 				w = w.substring(0, (w.length() - 1));
 				continue;
 			}
-			else if(w.endsWith("t") && (! endHuh.equals(""))){
-				myPho.add(0, "t");
+			else if (w.endsWith("t")){
+				if (endHuh.equals("")) {
 				endHuh = String.valueOf(w.charAt(w.length()-1)); 
 				w = w.substring(0, (w.length() - 1));
 				continue;
+				}
+				else {
+					myPho.add(0, "t");
+					endHuh = String.valueOf(w.charAt(w.length()-1)); 
+					w = w.substring(0, (w.length() - 1));	
+				}
 			}
 			else if(w.endsWith("v") && (! endHuh.equals(""))){
 				myPho.add(0, "v");

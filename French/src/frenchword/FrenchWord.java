@@ -9,7 +9,7 @@ public class FrenchWord {
 	/* Default constructor, that takes no parameters
 	 * constructors have 3 distinguishing features
 	 *   Same name as the class
-	 *   No return type, not even void
+	 *   No return type, not even void 
 	 *   Are public
 	 * We use constructors to initialize the fields, 
 	 * And optionally do other setup.

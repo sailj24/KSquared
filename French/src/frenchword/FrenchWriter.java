@@ -22,7 +22,7 @@ public class FrenchWriter {
 		System.out.println(myWord2);
 
 		//makePhonemeFileFromWordList("FrenchWordList.txt");
-		//readSampleSentences();
+		//readSampleSentences(); 
 	}
 	// Turns a book into a word list on disk. Just word list. No phonemes
 	static void makeWordFileFromBook(String filename) {

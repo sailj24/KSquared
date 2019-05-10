@@ -145,7 +145,7 @@ public class FrenchWord {
 				w = w.substring(0, (w.length() - 2));
 				continue;
 			}
-			else if(w.endsWith("ch")){
+			else if(w.endsWith("æ")){
 				myPho.add(0, "k");
 				endHuh = String.valueOf(w.charAt(w.length()-2)); 
 				w = w.substring(0, (w.length() - 2));

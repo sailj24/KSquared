@@ -13,9 +13,9 @@ public class FrenchWriter {
 	ArrayList<FrenchWord> WordList;
 
 	public static void main(String[] args) { 
-		FrenchWriter François = new FrenchWriter();
+		FrenchWriter FranÃ§ois = new FrenchWriter();
 		 makeWordFileFromBook("src/texts/proust.txt");
-		//François.makePhonemeFileFromWordList("src/texts/FrenchWordList.txt");
+		//FranÃ§ois.makePhonemeFileFromWordList("src/texts/FrenchWordList.txt");
 		FrenchWord myWord = new FrenchWord("proust");
 		System.out.println(myWord);
 		FrenchWord myWord2 = new FrenchWord("");
@@ -42,7 +42,7 @@ public class FrenchWriter {
 				String[] lineWords = line.split(" ");
 
 				for(String  word : lineWords){
-					String candidate = word.toLowerCase().replaceAll("[)[0-9](\\[\\]!,.?{} :; \\- \\—\"]", "");
+					String candidate = word.toLowerCase().replaceAll("[)[0-9](\\[\\]!,.?{} :; \\- \\Â—\"]", "");
 					if (candidate != null) {
 						wordList.add(candidate);  // Add the word object
 					}
@@ -103,7 +103,7 @@ public class FrenchWriter {
         String[] sentences = {
                 "je t'aime",    
                 "Non! Allons chez Suzette!",
-                "l'arc en ciel est une fête."
+                "l'arc en ciel est une fÃªte."
     }
 
 }*/
@@ -143,5 +143,4 @@ public class FrenchWriter {
 		System.out.println("Done Reading Book File"); 
 	}
 }
-
 

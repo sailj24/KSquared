@@ -31,8 +31,8 @@ public class FrenchWord {
 			this.phonemes = new ArrayList<String>();
 		}
 		else {
-		this.word = word; // Sets the class field "word" to be the parameter "word"
-		this.phonemes = this.phonemize(word);
+			this.word = word; // Sets the class field "word" to be the parameter "word"
+			this.phonemes = this.phonemize(word);
 		}
 	}
 
@@ -133,6 +133,13 @@ public class FrenchWord {
 				w = w.substring(0, (w.length() - 3));
 				continue;
 			}
+			else if(w.endsWith("ait") ||
+					w.endsWith("ées")) {
+				myPho.add(0, "é");
+				endHuh = String.valueOf(w.charAt(w.length()-3)); 
+				w = w.substring(0, (w.length() - 3));
+				continue;
+			}
 			else if(w.endsWith("ou")){
 				myPho.add(0, "u");
 				endHuh = String.valueOf(w.charAt(w.length()-2)); 
@@ -145,17 +152,18 @@ public class FrenchWord {
 				w = w.substring(0, (w.length() - 2));
 				continue;
 			}
-			else if(w.endsWith("ch")){
-				myPho.add(0, "k");
-				endHuh = String.valueOf(w.charAt(w.length()-2)); 
-				w = w.substring(0, (w.length() - 2));
-				continue;
-			}
 			else if(w.endsWith("er")){
-				myPho.add(0, "a");
-				endHuh = String.valueOf(w.charAt(w.length()-2)); 
-				w = w.substring(0, (w.length() - 2));
-				continue;
+				if(endHuh.equals("")){
+					myPho.add(0, "é");
+					endHuh = String.valueOf(w.charAt(w.length()-2)); 
+					w = w.substring(0, (w.length() - 2));
+					continue;
+				} else {
+					myPho.add(0, "ér");
+					endHuh = String.valueOf(w.charAt(w.length()-2)); 
+					w = w.substring(0, (w.length() - 2));
+					continue;
+				}
 			}
 			else if(w.endsWith("ie")){
 				myPho.add(0, "i");
@@ -206,13 +214,7 @@ public class FrenchWord {
 				w = w.substring(0, (w.length() - 2));
 				continue;
 			}
-			else if(w.endsWith("ce") ||
-					w.endsWith("ci")){
-				myPho.add(0, "s");
-				endHuh = String.valueOf(w.charAt(w.length()-2)); 
-				w = w.substring(0, (w.length() - 2));
-				continue;
-			}
+
 			else if(w.endsWith("nn")){
 				myPho.add(0, "n");
 				endHuh = String.valueOf(w.charAt(w.length()-2)); 
@@ -257,11 +259,17 @@ public class FrenchWord {
 				w = w.substring(0, (w.length() - 1));
 				continue;
 			}
-			else if(w.endsWith("e") && (! endHuh.equals(""))){
-				myPho.add(0, "è");
-				endHuh = String.valueOf(w.charAt(w.length()-1)); 
-				w = w.substring(0, (w.length() - 1));
-				continue;
+			else if(w.endsWith("e")){
+				if(endHuh.equals("")) {
+					endHuh = String.valueOf(w.charAt(w.length()-1)); 
+					w = w.substring(0, (w.length() - 1));
+					continue;
+				} else {
+					myPho.add(0, "è");
+					endHuh = String.valueOf(w.charAt(w.length()-1)); 
+					w = w.substring(0, (w.length() - 1));
+					continue;
+				}
 			}
 			else if(w.endsWith("î") || 
 					w.endsWith("i")) {
@@ -329,7 +337,7 @@ public class FrenchWord {
 					w = w.substring(0, (w.length() - 1));
 					continue;
 				}
-				
+
 			}
 			else if(w.endsWith("r")){
 				myPho.add(0, "r");
@@ -343,11 +351,36 @@ public class FrenchWord {
 				w = w.substring(0, (w.length() - 1));
 				continue;
 			}
-			else if(w.endsWith("c") && (! endHuh.equals(""))){
-				myPho.add(0, "k");
-				endHuh = String.valueOf(w.charAt(w.length()-1)); 
-				w = w.substring(0, (w.length() - 1));
-				continue;
+			else if(w.endsWith("c")) {
+				if (endHuh.equals("i")) {
+					myPho.add(0, "s");
+					endHuh = String.valueOf(w.charAt(w.length()-1)); 
+					w = w.substring(0, (w.length() - 1));
+					continue;
+				}
+				else if (endHuh.equals("e")) {
+					myPho.add(0, "s");
+					endHuh = String.valueOf(w.charAt(w.length()-1)); 
+					w = w.substring(0, (w.length() - 1));
+					continue;
+				}
+				else if(endHuh.equals("h")) {
+					myPho.add(0, "S");
+					endHuh = String.valueOf(w.charAt(w.length()-1)); 
+					w = w.substring(0, (w.length() - 1));
+					continue;
+				} 
+				else if(endHuh.equals("c")) {
+					myPho.add(0, "ks");
+					endHuh = String.valueOf(w.charAt(w.length()-1)); 
+					w = w.substring(0, (w.length() - 1));
+					continue;
+				} else {
+					myPho.add(0, "k");
+					endHuh = String.valueOf(w.charAt(w.length()-1)); 
+					w = w.substring(0, (w.length() - 1));
+					continue;
+				}
 			}
 			else if(w.endsWith("ç") && (! endHuh.equals(""))){
 				myPho.add(0, "s");
@@ -387,9 +420,9 @@ public class FrenchWord {
 			}
 			else if (w.endsWith("t")){
 				if (endHuh.equals("")) {
-				endHuh = String.valueOf(w.charAt(w.length()-1)); 
-				w = w.substring(0, (w.length() - 1));
-				continue;
+					endHuh = String.valueOf(w.charAt(w.length()-1)); 
+					w = w.substring(0, (w.length() - 1));
+					continue;
 				}
 				else {
 					myPho.add(0, "t");

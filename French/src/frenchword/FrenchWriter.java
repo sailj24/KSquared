@@ -14,8 +14,8 @@ public class FrenchWriter {
 
 	public static void main(String[] args) { 
 		FrenchWriter François = new FrenchWriter();
-		// makeWordFileFromBook("src/texts/proust.txt");
-		François.makePhonemeFileFromWordList("src/texts/FrenchWordList.txt");
+		 makeWordFileFromBook("src/texts/proust.txt");
+		//François.makePhonemeFileFromWordList("src/texts/FrenchWordList.txt");
 		FrenchWord myWord = new FrenchWord("proust");
 		System.out.println(myWord);
 		FrenchWord myWord2 = new FrenchWord("");
@@ -34,8 +34,6 @@ public class FrenchWriter {
 			// ArrayList is "generic," <> meaning it can be "an ArrayList of various types"
 			// We have to tell the compiler which type of things it will hold
 			ArrayList<String>wordList = new ArrayList<String>();
-
-			int count = 0;
 			String line = reader.readLine();
 			while (line != null) {
 				//System.out.println("Read a line with " + line.length() + " characters.");
@@ -44,7 +42,7 @@ public class FrenchWriter {
 				String[] lineWords = line.split(" ");
 
 				for(String  word : lineWords){
-					String candidate = word.toLowerCase().replaceAll("[)[0-9](\\[\\]!,.?{} :; \\- \"\\']", "");
+					String candidate = word.toLowerCase().replaceAll("[)[0-9](\\[\\]!,.?{} :; \\- \\—\"]", "");
 					if (candidate != null) {
 						wordList.add(candidate);  // Add the word object
 					}
@@ -137,7 +135,6 @@ public class FrenchWriter {
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}
-
 
 			reader.close();
 		} catch (IOException x) {

@@ -16,7 +16,7 @@ public class FrenchWriter {
 		FrenchWriter François = new FrenchWriter();
 		 makeWordFileFromBook("src/texts/proust.txt");
 		François.makePhonemeFileFromWordList("src/texts/FrenchWordList.txt");
-		FrenchWord myWord = new FrenchWord("proust");
+		FrenchWord myWord = new FrenchWord("font");
 		System.out.println(myWord);
 		FrenchWord myWord2 = new FrenchWord("");
 		System.out.println(myWord2);

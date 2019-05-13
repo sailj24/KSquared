@@ -63,9 +63,12 @@ public class FrenchWord {
 	ArrayList<String> phonemize(String w) {
 		ArrayList<String> myPho = new ArrayList<String>();
 		String endHuh = "";
+		ArrayList<String> exceptionHuh = isException(w);
+		if(exceptionHuh != null) return exceptionHuh;
+		
 		while (w.length() != 0) {
 			if(w.endsWith("atient") && endHuh.equals("")){
-				myPho.add(0,"jâ");
+				myPho.add(0,"jɑ̃");
 				myPho.add(0,"s");
 				myPho.add(0, "a");
 				endHuh = String.valueOf(w.charAt(w.length()-6)); 
@@ -73,37 +76,37 @@ public class FrenchWord {
 				continue;
 			}
 			else if(w.endsWith("aient") && endHuh.equals("")){
-				myPho.add(0, "é");
+				myPho.add(0, "e");
 				endHuh = String.valueOf(w.charAt(w.length()-5)); 
 				w = w.substring(0, (w.length() - 5));
 				continue;
 			}
 			else if(w.endsWith("èrent") && endHuh.equals("")){
-				myPho.add(0, "ér");
+				myPho.add(0, "eʁ");
 				endHuh = String.valueOf(w.charAt(w.length()-5)); 
 				w = w.substring(0, (w.length() - 5));
 				continue;
 			}
 
 			else if(w.endsWith("est") && endHuh.equals("")){
-				myPho.add(0, "é");
+				myPho.add(0, "e");
 				endHuh = String.valueOf(w.charAt(w.length()-3)); 
 				w = w.substring(0, (w.length() - 3));
 				continue;
 			}
-			else if(w.endsWith("lle") && (! endHuh.equals(""))){
-				if(w.equals("ville")) {
-					myPho.add(0,"l");
-					myPho.add(0,"i");
-					myPho.add(0,"v");
-					endHuh = String.valueOf(w.charAt(w.length()-4)); 
-					w = w.substring(0, (w.length() - 4));
+			else if(w.endsWith("ll")) {
+				if(String.valueOf(w.charAt(w.length() - 2)) == "[aeouy]") {
+					myPho.add(0, "l");
+					endHuh = String.valueOf(w.charAt(w.length()-2)); 
+					w = w.substring(0, (w.length() - 2));
 					continue;
 				}
-				else {myPho.add(0, "j");
-				endHuh = String.valueOf(w.charAt(w.length()-1)); 
-				w = w.substring(0, (w.length() - 1));
-				continue;
+				else if(w.endsWith("ill") && (String.valueOf(w.charAt(w.length() - 3)) == "[aeou]")) {
+					myPho.add(0, "j");
+					myPho.add(0, "i");
+					endHuh = String.valueOf(w.charAt(w.length()-3)); 
+					w = w.substring(0, (w.length() - 3));
+					continue;
 				}
 			}
 			else if((w.endsWith("ant" )|| 
@@ -422,6 +425,49 @@ public class FrenchWord {
 		}
 
 		return myPho;///////////
+	}
+	
+	static ArrayList<String> isException(String w){
+		if(w.equals("bacille"))
+			return arrayToArrayList(new String[] {"b", "a", "s"});
+		
+				"billevesées", 
+				"billion", 
+				"capillaire", 
+				"codicille", 
+				"distiller", 
+				"fibrille", 
+				"krill", 
+				"lille", 
+				"lilliputien",
+				"mille",
+				"milli",
+				"milliard",
+				"million",
+				"osciller",
+				"pupille",
+				"scille",
+				"spongille",
+				"tranquille",
+				"verticille",
+				"vexille",
+				"ville",
+				"zorille"}; 
+		
+		for.lWords..
+		 if(w.equals(x))
+	}
+	
+	/**
+	 * Converts an array of strings to an ArrayList of strings
+	 * @param w
+	 * @return
+	 */
+	ArrayList<String> arrayToArrayList(String[] w){
+		ArrayList<String> rv = new ArrayList<>();
+		for(String x : w)
+			rv.add(x);
+		return rv;
 	}
 
 

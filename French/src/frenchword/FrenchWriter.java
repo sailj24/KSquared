@@ -16,7 +16,7 @@ public class FrenchWriter {
 		FrenchWriter François = new FrenchWriter();
 		 makeWordFileFromBook("src/texts/proust.txt");
 		François.makePhonemeFileFromWordList("src/texts/FrenchWordList.txt");
-		FrenchWord myWord = new FrenchWord("font");
+		FrenchWord myWord = new FrenchWord("admirable");
 		System.out.println(myWord);
 		FrenchWord myWord2 = new FrenchWord("");
 		System.out.println(myWord2);
@@ -120,6 +120,7 @@ public class FrenchWriter {
 				//System.out.println("Read a line with " + line.length() + " characters.");
 				FrenchWord word = new FrenchWord(line);
 				frenchWordList.add(word);
+				//System.out.println(word.phonemes);
 				line = reader.readLine();
 			}
 			System.out.println("We read " + frenchWordList.size() + " words from the file");
@@ -130,7 +131,7 @@ public class FrenchWriter {
 				// You would do something like PrintWriter("FrenchWordList.txt");
 				for(FrenchWord s : frenchWordList){
 						out1.println(s);
-				}
+				} 
 				out1.close();
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();

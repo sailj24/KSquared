@@ -10,13 +10,13 @@ import java.util.Collections;
 
 
 public class FrenchWriter {
-	ArrayList<FrenchWord> WordList;
+
 
 	public static void main(String[] args) { 
 		FrenchWriter François = new FrenchWriter();
 		 makeWordFileFromBook("src/texts/proust.txt");
 		François.makePhonemeFileFromWordList("src/texts/FrenchWordList.txt");
-		FrenchWord myWord = new FrenchWord("admirable");
+		FrenchWord myWord = new FrenchWord("œuf");
 		System.out.println(myWord);
 		FrenchWord myWord2 = new FrenchWord("");
 		System.out.println(myWord2);
@@ -42,7 +42,7 @@ public class FrenchWriter {
 				String[] lineWords = line.split(" ");
 
 				for(String  word : lineWords){
-					String candidate = word.toLowerCase().replaceAll("[)[0-9](\\[\\]!,.?{} :; \\- \\\"]", "");
+					String candidate = word.toLowerCase().replaceAll("[)[0-9](\\[\\]!,.?{} :; \\-— \\\"]", "");
 					if (candidate != null) {
 						wordList.add(candidate);  // Add the word object
 					}

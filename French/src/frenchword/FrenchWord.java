@@ -62,172 +62,282 @@ public class FrenchWord {
 	 */
 	ArrayList<String> phonemize(String w) {
 		System.out.println("****" + w);
-		if(w.equals("accueilli"))
-			System.out.println("Llama");
 		ArrayList<String> myPho = new ArrayList<String>();
-		String endHuh = "";
+		String nextLetter = "";
 		ArrayList<String> exceptionHuh = isException(w, myPho);
 		if(exceptionHuh != null) return exceptionHuh;
 
 		while (w.length() != 0) {
-			if(w.endsWith("atient") && endHuh.equals("")){
+			if(w.endsWith("atient") && nextLetter.equals("")){
 				myPho.add(0,"jɑ̃");
 				myPho.add(0,"s");
 				myPho.add(0, "a");
-				endHuh = String.valueOf(w.charAt(w.length()-6)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-6)); 
 				w = w.substring(0, (w.length() - 6));
 				continue;
 			}
-			else if(w.endsWith("aient") && endHuh.equals("")){
+			else if(w.endsWith("aient") && nextLetter.equals("")){
 				myPho.add(0, "e");
-				endHuh = String.valueOf(w.charAt(w.length()-5)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-5)); 
 				w = w.substring(0, (w.length() - 5));
 				continue;
 			}
-			else if(w.endsWith("èrent") && endHuh.equals("")){
+			else if(w.endsWith("èrent") && nextLetter.equals("")){
 				myPho.add(0, "eʁ");
-				endHuh = String.valueOf(w.charAt(w.length()-5)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-5)); 
 				w = w.substring(0, (w.length() - 5));
 				continue;
 			} 
-			else if(w.endsWith("ants") && endHuh.equals("")){
+			else if(w.endsWith("ants") && nextLetter.equals("")){
 				myPho.add(0, "ɑ̃");
-				endHuh = String.valueOf(w.charAt(w.length()-4)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-4)); 
 				w = w.substring(0, (w.length() - 4));
 				continue;
 			}
-			else if(w.endsWith("ment") && endHuh.equals("")){
-				myPho.add(0, "ɑ̃");
-				endHuh = String.valueOf(w.charAt(w.length()-4)); 
+			else if(w.endsWith("eaux") && nextLetter.equals("")){
+				myPho.add(0, "o");
+				nextLetter = String.valueOf(w.charAt(w.length()-4)); 
 				w = w.substring(0, (w.length() - 4));
 				continue;
 			}
-			else if(w.endsWith("ble") && endHuh.equals("")){
+			else if(w.endsWith("ment")){
+				if(nextLetter.equals("")) {
+					myPho.add(0, "ɑ̃");
+					myPho.add(0, "m");
+					nextLetter = String.valueOf(w.charAt(w.length()-4)); 
+					w = w.substring(0, (w.length() - 4));
+					continue;
+				}
+				else {myPho.add(0, "t");
+				myPho.add(0, "ɑ̃");
+				myPho.add(0, "m");
+				nextLetter = String.valueOf(w.charAt(w.length()-4)); 
+				w = w.substring(0, (w.length() - 4));
+				continue;
+				}
+			}
+			else if(w.endsWith("ble") && nextLetter.equals("")){
 				myPho.add(0, "l");
 				myPho.add(0, "b");
-				endHuh = String.valueOf(w.charAt(w.length()-3)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-3)); 
 				w = w.substring(0, (w.length() - 3));
 				continue;
 			}
-			else if(w.endsWith("ait") && endHuh.equals("")){
+			else if(w.endsWith("ets") && nextLetter.equals("")){
 				myPho.add(0, "e");
-				endHuh = String.valueOf(w.charAt(w.length()-3)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-3)); 
 				w = w.substring(0, (w.length() - 3));
 				continue;
 			}
-			else if(w.endsWith("aux") && endHuh.equals("")){
+			else if(w.equals("tes")){
+				myPho.add(0, "e");
+				myPho.add(0, "t");
+				nextLetter = String.valueOf(w.charAt(w.length()-3)); 
+				w = w.substring(0, (w.length() - 3));
+				continue;
+			}
+			else if(w.endsWith("tes") && nextLetter.equals("")){
+				myPho.add(0, "t");
+				nextLetter = String.valueOf(w.charAt(w.length()-3)); 
+				w = w.substring(0, (w.length() - 3));
+				continue;
+			}
+			else if(w.endsWith("ait") && nextLetter.equals("")){
+				myPho.add(0, "e");
+				nextLetter = String.valueOf(w.charAt(w.length()-3)); 
+				w = w.substring(0, (w.length() - 3));
+				continue;
+			}
+			else if(w.endsWith("aux") && nextLetter.equals("")){
 				myPho.add(0, "o");
-				endHuh = String.valueOf(w.charAt(w.length()-3)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-3)); 
 				w = w.substring(0, (w.length() - 3));
 				continue;
 			}
-			else if(w.endsWith("est") && endHuh.equals("")){
+			else if(w.endsWith("est") && nextLetter.equals("")){
 				myPho.add(0, "e");
-				endHuh = String.valueOf(w.charAt(w.length()-3)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-3)); 
 				w = w.substring(0, (w.length() - 3));
 				continue;
 			} 
-			else if(w.endsWith("ail") && endHuh.equals("")){
+			else if(w.endsWith("res") && nextLetter.equals("")){
+				myPho.add(0, "R");
+				nextLetter = String.valueOf(w.charAt(w.length()-3)); 
+				w = w.substring(0, (w.length() - 3));
+				continue;
+			}
+			else if(w.endsWith("cce")){
+				myPho.add(0, "ɛ");
+				myPho.add(0, "ks");
+				nextLetter = String.valueOf(w.charAt(w.length()-3)); 
+				w = w.substring(0, (w.length() - 3));
+				continue;
+			}
+			else if(w.endsWith("ail") && nextLetter.equals("")){
 				myPho.add(0, "j");
 				myPho.add(0, "a");
-				endHuh = String.valueOf(w.charAt(w.length()-3)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-3)); 
 				w = w.substring(0, (w.length() - 3));
 				continue;
 			}
 			else if(w.endsWith("ll")) {
 				if("aeouy".contains("" + w.charAt(w.length() - 3))) {
 					myPho.add(0, "l");
-					endHuh = String.valueOf(w.charAt(w.length()-2)); 
+					nextLetter = String.valueOf(w.charAt(w.length()-2)); 
 					w = w.substring(0, (w.length() - 2));
 					continue;
 				}
 				else if(w.endsWith("ill")) {
 					myPho.add(0, "j");
 					myPho.add(0, "i");
-					endHuh = String.valueOf(w.charAt(w.length()-3)); 
+					nextLetter = String.valueOf(w.charAt(w.length()-3)); 
 					w = w.substring(0, (w.length() - 3));
 					continue;
 				}
 			}
 			else if((w.endsWith("ont") ||
-					w.endsWith("ond")) && endHuh.equals("")){
+					w.endsWith("ond")) && nextLetter.equals("")){
 				myPho.add(0, "ɔ̃");
-				endHuh = String.valueOf(w.charAt(w.length()-3)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-3)); 
 				w = w.substring(0, (w.length() - 3));
 				continue;
 			}
 			else if((w.endsWith("ant") || 
 					w.endsWith("ent") ||
 					w.endsWith("and") ||
-					w.endsWith("anc")) && endHuh.equals("")){
+					w.endsWith("anc")) && nextLetter.equals("")){
 				myPho.add(0, "ɑ̃");
-				endHuh = String.valueOf(w.charAt(w.length()-3)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-3)); 
 				w = w.substring(0, (w.length() - 3));
 				continue;
 			}
 			else if((w.endsWith("eut") || 
-					w.endsWith("eux")) && endHuh.equals("")){
+					w.endsWith("eux")) && nextLetter.equals("")){
 				myPho.add(0, "ø");
-				endHuh = String.valueOf(w.charAt(w.length()-3)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-3)); 
 				w = w.substring(0, (w.length() - 3));
 				continue;
 			}
 			else if(w.endsWith("out")){
 				myPho.add(0, "u");
-				endHuh = String.valueOf(w.charAt(w.length()-3)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-3)); 
+				w = w.substring(0, (w.length() - 3));
+				continue;
+			}
+			else if(w.endsWith("ais")){
+				myPho.add(0, "ɛ");
+				nextLetter = String.valueOf(w.charAt(w.length()-3)); 
 				w = w.substring(0, (w.length() - 3));
 				continue;
 			}
 			else if(w.endsWith("tte")){
 				myPho.add(0, "t");
-				endHuh = String.valueOf(w.charAt(w.length()-3)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-3)); 
 				w = w.substring(0, (w.length() - 3));
+				continue;
+			}
+			else if(w.endsWith("che")){
+				myPho.add(0, "ʃ");
+				nextLetter = String.valueOf(w.charAt(w.length()-3)); 
+				w = w.substring(0, (w.length() - 3));
+				continue;
+			}
+			else if(w.endsWith("ch")){
+				myPho.add(0, "ʃ");
+				nextLetter = String.valueOf(w.charAt(w.length()-2)); 
+				w = w.substring(0, (w.length() - 2));
+				continue;
+			} 
+			else if((w.endsWith("œuv"))){
+				myPho.add(0, "v");
+				myPho.add(0, "œ");
+				nextLetter = String.valueOf(w.charAt(w.length()-1)); 
+				w = w.substring(0, (w.length() - 1));
+				continue;
+			}
+			else if((w.endsWith("œu"))){
+				myPho.add(0, "œ");
+				nextLetter = String.valueOf(w.charAt(w.length()-2)); 
+				w = w.substring(0, (w.length() - 2));
+				continue;
+			}
+			else if((w.endsWith("œ") && (nextLetter.equals("d")))){
+				myPho.add(0, "e");
+				nextLetter = String.valueOf(w.charAt(w.length()-1)); 
+				w = w.substring(0, (w.length() - 1));
+				continue;
+			}
+			
+			else if((w.endsWith("œs"))){
+				myPho.add(0, "z");
+				myPho.add(0, "e");
+				nextLetter = String.valueOf(w.charAt(w.length()-2)); 
+				w = w.substring(0, (w.length() - 2));
+				continue;
+			}
+			else if(w.endsWith("œi")){
+				myPho.add(0, "e");
+				myPho.add(0, "o");
+				nextLetter = String.valueOf(w.charAt(w.length()-2)); 
+				w = w.substring(0, (w.length() - 2));
 				continue;
 			}
 			else if(w.endsWith("ou")){
 				myPho.add(0, "u");
-				endHuh = String.valueOf(w.charAt(w.length()-2)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-2)); 
 				w = w.substring(0, (w.length() - 2));
 				continue;
 			}
 			else if(w.endsWith("ck")){
 				myPho.add(0, "k");
-				endHuh = String.valueOf(w.charAt(w.length()-2)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-2)); 
 				w = w.substring(0, (w.length() - 2));
 				continue;
 			} 
 			else if(w.endsWith("ho")){
 				myPho.add(0, "ɔ");
-				endHuh = String.valueOf(w.charAt(w.length()-2)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-2)); 
 				w = w.substring(0, (w.length() - 2));
 				continue;
 			}
 			else if(w.endsWith("eu")){
 				myPho.add(0, "ø");
-				endHuh = String.valueOf(w.charAt(w.length()-2)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-2)); 
+				w = w.substring(0, (w.length() - 2));
+				continue;
+			}
+			else if(w.endsWith("en")){
+				myPho.add(0, "ɑ̃");
+				nextLetter = String.valueOf(w.charAt(w.length()-2)); 
+				w = w.substring(0, (w.length() - 2));
+				continue;
+			} 
+			else if(w.endsWith("in")){
+				myPho.add(0, "ɛ̃");
+				nextLetter = String.valueOf(w.charAt(w.length()-2)); 
 				w = w.substring(0, (w.length() - 2));
 				continue;
 			}
 			else if(w.endsWith("ie")){
 				myPho.add(0, "i");
-				endHuh = String.valueOf(w.charAt(w.length()-2)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-2)); 
 				w = w.substring(0, (w.length() - 2));
 				continue;
 			}
 			else if(w.endsWith("gn")){
 				myPho.add(0, "ŋ");
-				endHuh = String.valueOf(w.charAt(w.length()-2)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-2)); 
 				w = w.substring(0, (w.length() - 2));
 				continue;
 			}
 			else if(w.endsWith("ge") || w.endsWith("gi")){
 				myPho.add(0, "ʒ");
-				endHuh = String.valueOf(w.charAt(w.length()-2)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-2)); 
 				w = w.substring(0, (w.length() - 2));
 				continue;
 			}
 			else if (w.equals("es")) {
-				endHuh = String.valueOf(w.charAt(w.length()-2)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-2)); 
 				w = w.substring(0, (w.length() - 2));
 				continue;
 			}
@@ -238,122 +348,125 @@ public class FrenchWord {
 					w.endsWith("ée") ||
 					w.endsWith("êt") ||
 					w.endsWith("ai") ||
-					w.endsWith("ez")) && (endHuh.equals(""))){
+					w.endsWith("ez")) && (nextLetter.equals(""))){
 				myPho.add(0, "e");
-				endHuh = String.valueOf(w.charAt(w.length()-2)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-2)); 
 				w = w.substring(0, (w.length() - 2));
 				continue;
 			}
 			else if(w.endsWith("qu")){
 				myPho.add(0, "k");
-				endHuh = String.valueOf(w.charAt(w.length()-2)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-2)); 
 				w = w.substring(0, (w.length() - 2));
 				continue;
 			}
 			else if((w.endsWith("ss") || 
 					w.endsWith("sc"))){
 				myPho.add(0, "s");
-				endHuh = String.valueOf(w.charAt(w.length()-2)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-2)); 
 				w = w.substring(0, (w.length() - 2));
 				continue;
 			}
 			else if(w.endsWith("ff")){
 				myPho.add(0, "f");
-				endHuh = String.valueOf(w.charAt(w.length()-2)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-2)); 
 				w = w.substring(0, (w.length() - 2));
 				continue;
 			}
 			else if(w.endsWith("oi")){
 				myPho.add(0, "wa");
-				endHuh = String.valueOf(w.charAt(w.length()-2)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-2)); 
 				w = w.substring(0, (w.length() - 2));
 				continue;
 			}
-			else if(w.endsWith("ce") && (! endHuh.equals(""))){
+			else if(w.endsWith("ce") && (! nextLetter.equals(""))){
 				myPho.add(0, "ə");
 				myPho.add(0, "s");
-				endHuh = String.valueOf(w.charAt(w.length()-2)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-2)); 
 				w = w.substring(0, (w.length() - 2));
 				continue;
 			}
-			else if(w.endsWith("ce") && endHuh.equals("")){
+			else if(w.endsWith("ce") && nextLetter.equals("")){
 				myPho.add(0, "s");
-				endHuh = String.valueOf(w.charAt(w.length()-2)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-2)); 
 				w = w.substring(0, (w.length() - 2));
 				continue;
 			}
 			else if(w.equals("ce")){
 				myPho.add(0, "ə");
 				myPho.add(0, "s");
-				endHuh = String.valueOf(w.charAt(w.length()-2)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-2)); 
 				w = w.substring(0, (w.length() - 2));
 				continue;
 			}
 			else if(w.endsWith("nn")){
 				myPho.add(0, "n");
-				endHuh = String.valueOf(w.charAt(w.length()-2)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-2)); 
 				w = w.substring(0, (w.length() - 2));
 				continue;
 			}
 			else if(w.endsWith("tt")){
 				myPho.add(0, "t");
-				endHuh = String.valueOf(w.charAt(w.length()-2)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-2)); 
 				w = w.substring(0, (w.length() - 2));
 				continue;
 			}
 			else if(w.endsWith("cc")){
+				if(nextLetter.equals("e")) myPho.add(0, "ks");
+				else {
 				myPho.add(0, "k");
-				endHuh = String.valueOf(w.charAt(w.length()-2)); 
+				}
+				nextLetter = String.valueOf(w.charAt(w.length()-2)); 
 				w = w.substring(0, (w.length() - 2));
 				continue;
 			}
 			else if(w.endsWith("bb")){
 				myPho.add(0, "b");
-				endHuh = String.valueOf(w.charAt(w.length()-2)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-2)); 
 				w = w.substring(0, (w.length() - 2));
 				continue;
 			}
 			else if(w.endsWith("mm")){
 				myPho.add(0, "m");
-				endHuh = String.valueOf(w.charAt(w.length()-2)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-2)); 
 				w = w.substring(0, (w.length() - 2));
 				continue;
 			}
 			else if (w.endsWith("an")){
 				myPho.add(0, "ɑ̃");
-				endHuh = String.valueOf(w.charAt(w.length()-2)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-2)); 
 				w = w.substring(0, (w.length() - 2));
 				continue;
 			}
 			else if(w.endsWith("on") ||
 					w.endsWith("om")){
 				myPho.add(0, "ɔ̃");
-				endHuh = String.valueOf(w.charAt(w.length()-2)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-2)); 
 				w = w.substring(0, (w.length() - 2));
 				continue;
 			}
 			else if(w.endsWith("ll")){
 				myPho.add(0, "j");
-				endHuh = String.valueOf(w.charAt(w.length()-2)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-2)); 
 				w = w.substring(0, (w.length() - 2));
 				continue;
 			}
 			else if(w.endsWith("rr")){
 				myPho.add(0, "R");
-				endHuh = String.valueOf(w.charAt(w.length()-2)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-2)); 
 				w = w.substring(0, (w.length() - 2));
 				continue;
 			}
 			else if(w.endsWith("re")){
 				myPho.add(0, "ə");
 				myPho.add(0, "R");
-				endHuh = String.valueOf(w.charAt(w.length()-2)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-2)); 
 				w = w.substring(0, (w.length() - 2));
 				continue;
 			}
 			else if(w.endsWith("pp")){
 				myPho.add(0, "p");
-				endHuh = String.valueOf(w.charAt(w.length()-2)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-2)); 
 				w = w.substring(0, (w.length() - 2));
 				continue;
 			}
@@ -361,41 +474,46 @@ public class FrenchWord {
 					w.endsWith("à") || 
 					w.endsWith("â")){
 				myPho.add(0, "a");
-				endHuh = String.valueOf(w.charAt(w.length()-1)); 
-				w = w.substring(0, (w.length() - 1));
-				continue;
-			}
-
-			else if(w.endsWith("e") && (endHuh.equals(""))){
-				endHuh = String.valueOf(w.charAt(w.length()-1)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-1)); 
 				w = w.substring(0, (w.length() - 1));
 				continue;
 			}
 			else if(w.endsWith("é")){
 				myPho.add(0, "e");
-				endHuh = String.valueOf(w.charAt(w.length()-1)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-1)); 
 				w = w.substring(0, (w.length() - 1));
 				continue;
 			}
-			else if(w.endsWith("e") && (! endHuh.equals(""))){
-				if(.endHuh..)////if silent, ment... if not silent, still within word
-				myPho.add(0, "ɛ");
-				endHuh = String.valueOf(w.charAt(w.length()-1)); 
+			else if(w.endsWith("e") && (nextLetter.equals(""))){
+				nextLetter = String.valueOf(w.charAt(w.length()-1)); 
 				w = w.substring(0, (w.length() - 1));
 				continue;
 			}
+			else if(w.endsWith("e") && (! nextLetter.equals(""))){
+				if(w.length() == 1) {////if silent, ment... if not silent, still within word
+					myPho.add(0, "ɛ");
+					nextLetter = String.valueOf(w.charAt(w.length()-1)); 
+					w = w.substring(0, (w.length() - 1));
+					continue;
+				} else {
+					myPho.add(0, "ə");
+					nextLetter = String.valueOf(w.charAt(w.length()-1)); 
+					w = w.substring(0, (w.length() - 1));	
+				}
+			}
+
 			else if(w.endsWith("î") || 
 					w.endsWith("i") ||
 					w.endsWith("ï")) {
 				myPho.add(0, "i");
-				endHuh = String.valueOf(w.charAt(w.length()-1)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-1)); 
 				w = w.substring(0, (w.length() - 1));
 				continue;
 			}
 			else if((w.endsWith("o") ||
 					w.endsWith("ô") )){
 				myPho.add(0, "o");
-				endHuh = String.valueOf(w.charAt(w.length()-1)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-1)); 
 				w = w.substring(0, (w.length() - 1));
 				continue;
 			}
@@ -404,149 +522,173 @@ public class FrenchWord {
 					w.endsWith("ü") ||
 					w.endsWith("û")){
 				myPho.add(0, "y");
-				endHuh = String.valueOf(w.charAt(w.length()-1)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-1)); 
 				w = w.substring(0, (w.length() - 1));
 				continue;
 			}
 			else if(w.endsWith("f")){
 				myPho.add(0, "f");
-				endHuh = String.valueOf(w.charAt(w.length()-1)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-1)); 
 				w = w.substring(0, (w.length() - 1));
 				continue;
 			}
 			else if(w.endsWith("l")){
 				myPho.add(0, "l");
-				endHuh = String.valueOf(w.charAt(w.length()-1)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-1)); 
 				w = w.substring(0, (w.length() - 1));
 				continue;
 			}
 			else if(w.endsWith("p")){
 				myPho.add(0, "p");
-				endHuh = String.valueOf(w.charAt(w.length()-1)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-1)); 
 				w = w.substring(0, (w.length() - 1));
 				continue;
 			}
 			else if(w.endsWith("y")){
 				myPho.add(0, "i");
-				endHuh = String.valueOf(w.charAt(w.length()-1)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-1)); 
 				w = w.substring(0, (w.length() - 1));
 				continue;
 			}
-			else if(w.endsWith("s") && (! endHuh.equals(""))){
-				if((w.length()==1)|| (! "aeiou".contains(endHuh))){
+			else if(w.endsWith("s") && (! nextLetter.equals(""))){
+				if((w.length()==1)|| (! "aeiou".contains(nextLetter))){
 					myPho.add(0, "s");
-					endHuh = String.valueOf(w.charAt(w.length()-1)); 
+					nextLetter = String.valueOf(w.charAt(w.length()-1)); 
 					w = w.substring(0, (w.length() - 1));
 					continue;
 				}
 				else { 
 					myPho.add(0, "z");
-					endHuh = String.valueOf(w.charAt(w.length()-1)); 
+					nextLetter = String.valueOf(w.charAt(w.length()-1)); 
 					w = w.substring(0, (w.length() - 1));
 					continue;
 				}
 			}
-			else if(w.endsWith("s") && endHuh.equals("")){
-				endHuh = String.valueOf(w.charAt(w.length()-1)); 
+			else if(w.endsWith("s") && nextLetter.equals("")){
+				nextLetter = String.valueOf(w.charAt(w.length()-1)); 
+				w = w.substring(0, (w.length() - 1));
+				continue;
+			} 
+			else if(w.endsWith("œ")){
+				myPho.add(0, "œ");
+				nextLetter = String.valueOf(w.charAt(w.length()-1)); 
 				w = w.substring(0, (w.length() - 1));
 				continue;
 			}
 			else if(w.endsWith("r")){
 				myPho.add(0, "R");
-				endHuh = String.valueOf(w.charAt(w.length()-1)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-1)); 
 				w = w.substring(0, (w.length() - 1));
 				continue;
 			}
-			else if(w.endsWith("b") && (! endHuh.equals(""))){
+			else if(w.endsWith("b") && (! nextLetter.equals(""))){
 				myPho.add(0, "b");
-				endHuh = String.valueOf(w.charAt(w.length()-1)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-1)); 
 				w = w.substring(0, (w.length() - 1));
 				continue;
 			}
-			else if(w.endsWith("c") && (! endHuh.equals(""))){
-				myPho.add(0, "k");
-				endHuh = String.valueOf(w.charAt(w.length()-1)); 
+			else if(w.endsWith("c") && (! nextLetter.equals(""))){
+				if (nextLetter.equals("i")) myPho.add(0, "s");
+				else {
+					myPho.add(0, "s");
+				}
+				nextLetter = String.valueOf(w.charAt(w.length()-1)); 
 				w = w.substring(0, (w.length() - 1));
 				continue;
+				
 			}
 			else if(w.endsWith("ç")){
 				myPho.add(0, "s");
-				endHuh = String.valueOf(w.charAt(w.length()-1)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-1)); 
 				w = w.substring(0, (w.length() - 1));
 				continue;
 			}
-			else if(w.endsWith("d") && (! endHuh.equals(""))){
+			else if(w.endsWith("d") && (! nextLetter.equals(""))){
 				myPho.add(0, "d");
-				endHuh = String.valueOf(w.charAt(w.length()-1)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-1)); 
 				w = w.substring(0, (w.length() - 1));
 				continue;
 			}
-			else if(w.endsWith("d") && endHuh.equals("")){
-				endHuh = String.valueOf(w.charAt(w.length()-1)); 
+			else if(w.endsWith("d") && nextLetter.equals("")){
+				nextLetter = String.valueOf(w.charAt(w.length()-1)); 
 				w = w.substring(0, (w.length() - 1));
 				continue;
 			}
 			else if(w.endsWith("j")){
 				myPho.add(0, "ʒ");
-				endHuh = String.valueOf(w.charAt(w.length()-1)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-1)); 
 				w = w.substring(0, (w.length() - 1));
 				continue;
 			}
 			else if(w.endsWith("k")){
 				myPho.add(0, "k");
-				endHuh = String.valueOf(w.charAt(w.length()-1)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-1)); 
 				w = w.substring(0, (w.length() - 1));
 				continue;
 			}
-			else if(w.endsWith("m") && (! endHuh.equals(""))){
+			else if(w.endsWith("g")){
+				if(nextLetter.equals("e") ||
+						nextLetter.equals("i")) {
+					myPho.add(0, "ʒ");
+					nextLetter = String.valueOf(w.charAt(w.length()-1)); 
+					w = w.substring(0, (w.length() - 1));
+					continue;
+				}
+				else { myPho.add(0, "g");
+				nextLetter = String.valueOf(w.charAt(w.length()-1)); 
+				w = w.substring(0, (w.length() - 1));
+				continue;
+				}
+			}
+			else if(w.endsWith("m") && (! nextLetter.equals(""))){
 				myPho.add(0, "m");
-				endHuh = String.valueOf(w.charAt(w.length()-1)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-1)); 
 				w = w.substring(0, (w.length() - 1));
 				continue;
 			}
-			else if(w.endsWith("m") && endHuh.equals("")){
-				endHuh = String.valueOf(w.charAt(w.length()-1)); 
+			else if(w.endsWith("m") && nextLetter.equals("")){
+				nextLetter = String.valueOf(w.charAt(w.length()-1)); 
 				w = w.substring(0, (w.length() - 1));
 				continue;
 			}
-			else if(w.endsWith("n") && (! endHuh.equals(""))){
+			else if(w.endsWith("n") && (! nextLetter.equals(""))){
 				myPho.add(0, "n");
-				endHuh = String.valueOf(w.charAt(w.length()-1)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-1)); 
 				w = w.substring(0, (w.length() - 1));
 				continue;
 			}
-			else if(w.endsWith("n") && endHuh.equals("")){
-				endHuh = String.valueOf(w.charAt(w.length()-1)); 
+			else if(w.endsWith("n") && nextLetter.equals("")){
+				nextLetter = String.valueOf(w.charAt(w.length()-1)); 
 				w = w.substring(0, (w.length() - 1));
 				continue;
 			}
 			else if (w.endsWith("t")){
-				if (endHuh.equals("")) {
-					endHuh = String.valueOf(w.charAt(w.length()-1)); 
+				if (nextLetter.equals("")) {
+					nextLetter = String.valueOf(w.charAt(w.length()-1)); 
 					w = w.substring(0, (w.length() - 1));
 					continue;
 				}
 				else {
 					myPho.add(0, "t");
-					endHuh = String.valueOf(w.charAt(w.length()-1)); 
+					nextLetter = String.valueOf(w.charAt(w.length()-1)); 
 					w = w.substring(0, (w.length() - 1));	
 				}
 			}
 			else if(w.endsWith("v")){
 				myPho.add(0, "v");
-				endHuh = String.valueOf(w.charAt(w.length()-1)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-1)); 
 				w = w.substring(0, (w.length() - 1));
 				continue;
 			}
 			else if(w.endsWith("w")){
 				myPho.add(0, "v");
-				endHuh = String.valueOf(w.charAt(w.length()-1)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-1)); 
 				w = w.substring(0, (w.length() - 1));
 				continue;
 			}
 			else if(w.endsWith("z")){
 				myPho.add(0, "z");
-				endHuh = String.valueOf(w.charAt(w.length()-1)); 
+				nextLetter = String.valueOf(w.charAt(w.length()-1)); 
 				w = w.substring(0, (w.length() - 1));
 				continue;
 			}

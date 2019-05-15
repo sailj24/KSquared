@@ -14,9 +14,10 @@ public class FrenchWriter {
 
 	public static void main(String[] args) { 
 		FrenchWriter François = new FrenchWriter();
-		 makeWordFileFromBook("src/texts/proust.txt");
-		François.makePhonemeFileFromWordList("src/texts/FrenchWordList.txt");
-		FrenchWord myWord = new FrenchWord("œuf");
+	//	 makeWordFileFromBook("src/texts/proust.txt");
+	//	François.makePhonemeFileFromWordList("src/texts/FrenchWordList.txt");
+	//	François.makePhonemeKey();
+		FrenchWord myWord = new FrenchWord("trouvezvous");
 		System.out.println(myWord);
 		FrenchWord myWord2 = new FrenchWord("");
 		System.out.println(myWord2);
@@ -42,9 +43,17 @@ public class FrenchWriter {
 				String[] lineWords = line.split(" ");
 
 				for(String  word : lineWords){
-					String candidate = word.toLowerCase().replaceAll("[)[0-9](\\[\\]!,.?{} :; \\-— \\\"]", "");
+					String candidate = word.toLowerCase().replaceAll("[)[0-9](\\[\\]!,.?{} :;_ \\\"]", "");
 					if (candidate != null) {
-						wordList.add(candidate);  // Add the word object
+					if ((candidate.contains("-") ||
+							candidate.contains("—"))) {
+						candidate = candidate.replaceAll("[\\-—]", " ");
+						String[] cParts = candidate.split(" ");
+						for (String s: cParts) {
+							wordList.add(s);
+						}
+					}
+					else wordList.add(candidate);
 					}
 				}
 				line = reader.readLine();
@@ -143,5 +152,43 @@ public class FrenchWriter {
 		}
 		System.out.println("Done Reading Book File"); 
 	}
+
+
+void makePhonemeKey() {
+	PrintWriter out6;
+	
+	try {
+		out6 = new PrintWriter("src/texts/phonKey.txt");
+		out6.println("ɑ : ah like 'arm'");
+		out6.println("ɑ̃ : ah with soft palette lowered (nasal)");
+		out6.println("e : ey like 'day'");
+		out6.println("ɛ : eh like 'effect'");
+		out6.println("ɛ̃ : eh with soft palette lowered (nasal)");
+		out6.println("ə : ugh like you've been punched in the gut (or silent if you're speaking quickly)");
+		out6.println("i : ee like pee");
+		out6.println("o : oh without the second dipthong");
+		out6.println("ɔ : 'ore' just don't close your mouth completely");
+		out6.println("ɔ̃ : 'ah ng' like gong");
+		out6.println("œ	: uh like 'hoof'");
+		out6.println("ø : oogh like 'lune' mixed with being punched in the gut");
+		out6.println("u	: oo like 'too'");
+		out6.println("y : yu like in 'you'");
+		out6.println("j : y like in 'tortilla'");
+		out6.println("wa: w + ah, think 'WWHataburger'"); 
+		out6.println("ɲ : nnnya like the Knights who Say 'Ni' or 'Knack knack knack' or 'Funyan'");
+		out6.println("ŋ : ng like in 'singing'");
+		out6.println("ʃ : sh like 'she'");
+		out6.println("ʒ : zh like in 'vision', or a very soft jh");
+		out6.println("jɑ̃: eyyoh like an abnoxious nasal donkey but really fast so it sounds like 'yoh'");
+		out6.println("eʁ: eh-er like 'air'");
+		out6.println("ks: x like 'fox");
+		out6.println("All other consonants are pronounced like their American counterparts");
+		
+		out6.close();
+	} catch (FileNotFoundException e) {
+		e.printStackTrace();
+	}
+	
+}
 }
 

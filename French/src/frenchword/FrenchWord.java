@@ -82,6 +82,13 @@ public class FrenchWord {
 				w = w.substring(0, (w.length() - 5));
 				continue;
 			}
+			else if(w.endsWith("eille")){
+				myPho.add(0, "j");
+				myPho.add(0, "ɛ");
+				nextLetter = String.valueOf(w.charAt(w.length()-5)); 
+				w = w.substring(0, (w.length() - 5));
+				continue;
+			}
 			else if(w.endsWith("èrent") && nextLetter.equals("")){
 				myPho.add(0, "eʁ");
 				nextLetter = String.valueOf(w.charAt(w.length()-5)); 
@@ -94,8 +101,21 @@ public class FrenchWord {
 				w = w.substring(0, (w.length() - 4));
 				continue;
 			}
+			else if(w.endsWith("ents") && nextLetter.equals("")){
+				myPho.add(0, "ɑ̃");
+				nextLetter = String.valueOf(w.charAt(w.length()-4)); 
+				w = w.substring(0, (w.length() - 4));
+				continue;
+			}
 			else if(w.endsWith("eaux") && nextLetter.equals("")){
 				myPho.add(0, "o");
+				nextLetter = String.valueOf(w.charAt(w.length()-4)); 
+				w = w.substring(0, (w.length() - 4));
+				continue;
+			}
+			else if(w.endsWith("elle") && nextLetter.equals("")){
+				myPho.add(0, "l");
+				myPho.add(0, "ɛ");
 				nextLetter = String.valueOf(w.charAt(w.length()-4)); 
 				w = w.substring(0, (w.length() - 4));
 				continue;
@@ -123,8 +143,20 @@ public class FrenchWord {
 				w = w.substring(0, (w.length() - 3));
 				continue;
 			}
+			else if(w.endsWith("eau")){
+				myPho.add(0, "o");
+				nextLetter = String.valueOf(w.charAt(w.length()-3)); 
+				w = w.substring(0, (w.length() - 3));
+				continue;
+			}
 			else if(w.endsWith("ets") && nextLetter.equals("")){
 				myPho.add(0, "e");
+				nextLetter = String.valueOf(w.charAt(w.length()-3)); 
+				w = w.substring(0, (w.length() - 3));
+				continue;
+			}
+			else if(w.endsWith("eui")){
+				myPho.add(0, "œ");
 				nextLetter = String.valueOf(w.charAt(w.length()-3)); 
 				w = w.substring(0, (w.length() - 3));
 				continue;
@@ -161,7 +193,7 @@ public class FrenchWord {
 				continue;
 			} 
 			else if(w.endsWith("res") && nextLetter.equals("")){
-				myPho.add(0, "R");
+				myPho.add(0, "ʁ");
 				nextLetter = String.valueOf(w.charAt(w.length()-3)); 
 				w = w.substring(0, (w.length() - 3));
 				continue;
@@ -248,6 +280,12 @@ public class FrenchWord {
 				w = w.substring(0, (w.length() - 2));
 				continue;
 			} 
+			else if(w.endsWith("au")){
+				myPho.add(0, "o");
+				nextLetter = String.valueOf(w.charAt(w.length()-2)); 
+				w = w.substring(0, (w.length() - 2));
+				continue;
+			}
 			else if((w.endsWith("œuv"))){
 				myPho.add(0, "v");
 				myPho.add(0, "œ");
@@ -336,7 +374,19 @@ public class FrenchWord {
 				w = w.substring(0, (w.length() - 2));
 				continue;
 			}
+			else if(w.endsWith("ès")){
+				myPho.add(0, "ɛ");
+				nextLetter = String.valueOf(w.charAt(w.length()-2)); 
+				w = w.substring(0, (w.length() - 2));
+				continue;
+			}
 			else if (w.equals("es")) {
+				nextLetter = String.valueOf(w.charAt(w.length()-2)); 
+				w = w.substring(0, (w.length() - 2));
+				continue;
+			}
+			else if (w.equals("ez")) {
+				myPho.add(0, "e");
 				nextLetter = String.valueOf(w.charAt(w.length()-2)); 
 				w = w.substring(0, (w.length() - 2));
 				continue;
@@ -347,8 +397,7 @@ public class FrenchWord {
 					w.endsWith("ed") ||
 					w.endsWith("ée") ||
 					w.endsWith("êt") ||
-					w.endsWith("ai") ||
-					w.endsWith("ez")) && (nextLetter.equals(""))){
+					w.endsWith("ai")) && (nextLetter.equals(""))){
 				myPho.add(0, "e");
 				nextLetter = String.valueOf(w.charAt(w.length()-2)); 
 				w = w.substring(0, (w.length() - 2));
@@ -369,6 +418,12 @@ public class FrenchWord {
 			}
 			else if(w.endsWith("ff")){
 				myPho.add(0, "f");
+				nextLetter = String.valueOf(w.charAt(w.length()-2)); 
+				w = w.substring(0, (w.length() - 2));
+				continue;
+			}
+			else if(w.endsWith("dd")){
+				myPho.add(0, "d");
 				nextLetter = String.valueOf(w.charAt(w.length()-2)); 
 				w = w.substring(0, (w.length() - 2));
 				continue;
@@ -403,6 +458,12 @@ public class FrenchWord {
 				myPho.add(0, "n");
 				nextLetter = String.valueOf(w.charAt(w.length()-2)); 
 				w = w.substring(0, (w.length() - 2));
+				continue;
+			}
+			else if(w.endsWith("s'h")){
+				myPho.add(0, "s");
+				nextLetter = String.valueOf(w.charAt(w.length()-3)); 
+				w = w.substring(0, (w.length() - 3));
 				continue;
 			}
 			else if(w.endsWith("tt")){
@@ -452,14 +513,14 @@ public class FrenchWord {
 				continue;
 			}
 			else if(w.endsWith("rr")){
-				myPho.add(0, "R");
+				myPho.add(0, "ʁ");
 				nextLetter = String.valueOf(w.charAt(w.length()-2)); 
 				w = w.substring(0, (w.length() - 2));
 				continue;
 			}
 			else if(w.endsWith("re")){
 				myPho.add(0, "ə");
-				myPho.add(0, "R");
+				myPho.add(0, "ʁ");
 				nextLetter = String.valueOf(w.charAt(w.length()-2)); 
 				w = w.substring(0, (w.length() - 2));
 				continue;
@@ -501,7 +562,18 @@ public class FrenchWord {
 					w = w.substring(0, (w.length() - 1));	
 				}
 			}
-
+			else if(w.endsWith("ê")){
+				myPho.add(0, "ɛ");
+				nextLetter = String.valueOf(w.charAt(w.length()-1)); 
+				w = w.substring(0, (w.length() - 1));
+				continue;
+			}
+			else if(w.endsWith("ê")){
+				myPho.add(0, "ɛ");
+				nextLetter = String.valueOf(w.charAt(w.length()-1)); 
+				w = w.substring(0, (w.length() - 1));
+				continue;
+			}
 			else if(w.endsWith("î") || 
 					w.endsWith("i") ||
 					w.endsWith("ï")) {
@@ -576,7 +648,7 @@ public class FrenchWord {
 				continue;
 			}
 			else if(w.endsWith("r")){
-				myPho.add(0, "R");
+				myPho.add(0, "ʁ");
 				nextLetter = String.valueOf(w.charAt(w.length()-1)); 
 				w = w.substring(0, (w.length() - 1));
 				continue;
@@ -692,6 +764,10 @@ public class FrenchWord {
 				w = w.substring(0, (w.length() - 1));
 				continue;
 			}
+			else if(w.endsWith("'")){
+				w = w.substring(0, (w.length() - 1));
+				continue;
+			}
 
 			else return myPho;
 		}
@@ -707,15 +783,15 @@ public class FrenchWord {
 		else if(w.equals("billion"))
 			return arrayToArrayList(new String[] {"b", "i", "l" ,"j", "ɔ̃"});
 		else if(w.equals("capillaire"))
-			return arrayToArrayList(new String[] {"k", "a", "p" ,"i", "l", "ɛ", "R"});
+			return arrayToArrayList(new String[] {"k", "a", "p" ,"i", "l", "ɛ", "ʁ"});
 		else if(w.equals("codicille"))
 			return arrayToArrayList(new String[] {"k", "ɔ", "d" ,"i", "s", "i", "l"});
 		else if(w.equals("distiller"))
 			return arrayToArrayList(new String[] {"d", "i", "s" ,"t", "i", "l", "e"});
 		else if(w.equals("fibrille"))
-			return arrayToArrayList(new String[] {"f", "i", "b" ,"R", "i", "l"});
+			return arrayToArrayList(new String[] {"f", "i", "b" ,"ʁ", "i", "l"});
 		else if(w.equals("krill"))
-			return arrayToArrayList(new String[] {"k", "R", "i" ,"l"});
+			return arrayToArrayList(new String[] {"k", "ʁ", "i" ,"l"});
 		else if(w.equals("lille"))
 			return arrayToArrayList(new String[] {"l", "i" ,"l"});
 		else if(w.equals("mille"))
@@ -723,7 +799,7 @@ public class FrenchWord {
 		else if(w.equals("milli"))
 			return arrayToArrayList(new String[] {"m", "i", "l", "i"});
 		else if(w.equals("milliard"))
-			return arrayToArrayList(new String[] {"m", "i", "l" ,"j", "a", "R"});
+			return arrayToArrayList(new String[] {"m", "i", "l" ,"j", "a", "ʁ"});
 		else if(w.equals("million"))
 			return arrayToArrayList(new String[] {"m", "i", "l" ,"j", "ɔ̃"});
 		else if(w.equals("osciller"))
@@ -733,7 +809,7 @@ public class FrenchWord {
 		else if(w.equals("scille"))
 			return arrayToArrayList(new String[] {"s", "i" ,"l"});
 		else if(w.equals("tranquille"))
-			return arrayToArrayList(new String[] {"t", "R", "ɑ̃" ,"k", "i", "l"});
+			return arrayToArrayList(new String[] {"t", "ʁ", "ɑ̃" ,"k", "i", "l"});
 		else if(w.equals("ville"))
 			return arrayToArrayList(new String[] {"v","i", "l"});
 		else if(w.equals("mlle"))

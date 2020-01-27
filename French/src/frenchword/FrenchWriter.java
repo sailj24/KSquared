@@ -1,6 +1,7 @@
 package frenchword;
 
 import java.io.BufferedReader;
+import java.util.Scanner;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -17,10 +18,14 @@ public class FrenchWriter {
 	//	 makeWordFileFromBook("src/texts/proust.txt");
 	//	François.makePhonemeFileFromWordList("src/texts/FrenchWordList.txt");
 	//	François.makePhonemeKey();
-		FrenchWord myWord = new FrenchWord("trouvezvous");
+	Scanner sc = new Scanner(System.in);
+	System.out.println("Type the word you want to pronounce:");
+	String word = sc.nextLine();
+		FrenchWord myWord = new FrenchWord(word);
 		System.out.println(myWord);
 		FrenchWord myWord2 = new FrenchWord("");
 		System.out.println(myWord2);
+		sc.close();
 
 		//makePhonemeFileFromWordList("FrenchWordList.txt");
 		//readSampleSentences(); 

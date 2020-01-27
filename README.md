@@ -1,5 +1,5 @@
 # KSquared
-Our French Word and Phonemes and Audio Parser
+Our French Word and Phonemes and Audio Parser: 
 We sought to produce the phonetic spelling, separated by phoneme, of a French word.
 
 Organization:

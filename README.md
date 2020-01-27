@@ -5,6 +5,7 @@ We sought to produce the phonetic spelling, separated by phoneme, of a French wo
 Organization:
 
 -French
+
    -bin
    
      -src
@@ -12,7 +13,7 @@ Organization:
                     -FrenchWord      //the algorithm for creating phonetic spelling
                     -FrenchWriter    //the main file to run the Scanner and have phonetic output
                     
-           -texts                   // the French texts we used to accumulate words, and the list of phonetic spellings produced during                                       //each run, as well as the phonetic pronunciation guide
+           -texts                   // the French texts we used to accumulate words, and the list of phonetic spellings produced during   each run, as well as the phonetic pronunciation guide
            
     -classpath
     
